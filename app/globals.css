@@ -2,20 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Default theme colors (light mode)
+ * These variables are used as the base theme
+ * They will be applied unless overridden by the dark mode media query
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ffffff;  /* White background for light mode */
+  --foreground: #171717;  /* Dark text for light mode */
 }
 
+/* Dark mode colors
+ * This media query automatically detects system dark mode preference
+ * It works by:
+ * 1. Checking OS settings (Windows: Personalization > Colors, macOS: System Preferences > General)
+ * 2. Browser detects OS setting and enables this media query if in dark mode
+ * 3. These values then override the default :root variables above
+ */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0a0a0a;  /* Dark background for dark mode */
+    --foreground: #ededed;  /* Light text for dark mode */
   }
 }
 
+/* Apply the theme variables and fonts to the body
+ * - Color variables will update automatically when system theme changes
+ * - Font stack provides fallbacks if Geist Sans fails to load
+ */
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }

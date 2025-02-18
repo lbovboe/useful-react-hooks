@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
+// Import Next.js's built-in font loader for Google Fonts
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+// Initialize the Geist Sans font with Next.js font loader
+// This handles font optimization, loading, and CSS variable creation
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+  variable: "--font-geist-sans", // CSS variable name that will be created
+  subsets: ["latin"],           // Only load Latin characters for better performance
 });
 
+// Initialize the Geist Mono font similarly
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -25,6 +29,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+        // Apply the font variables and antialiasing to the body
+        // - geistSans.variable adds the --font-geist-sans CSS variable
+        // - geistMono.variable adds the --font-geist-mono CSS variable
+        // - antialiased enables smoother text rendering
+        // These variables can then be used in Tailwind config or CSS
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
